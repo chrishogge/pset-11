@@ -35,9 +35,12 @@ public class Exercises {
 
   public int findMeFaster(ArrayList<Integer> list, int target) {
 
-    int mid = list.size()/2;
-
-    return -1;
+    int index = list.indexOf(target);
+    if(index > -1){
+      return index;
+    }else {
+      return -1;
+    }
   }
 
   public int findMeFaster(String[] list, String target) {

@@ -34,6 +34,17 @@ public class Exercises {
   }
 
   public int findMeFaster(ArrayList<Integer> list, int target) {
+
+    int mid = list.size()/2;
+
+    if(list.get(mid) == target){
+      return mid;
+    }else if(target > mid){
+      findMeFaster(new ArrayList<Integer>(list.subList(mid, list.size())), target);
+    }else if(target < mid){
+      findMeFaster(new ArrayList<Integer>(list.subList(0, mid)), target);
+    }
+
     return -1;
   }
 
@@ -82,5 +93,7 @@ public class Exercises {
 
     ArrayList<String> testStrings = new ArrayList<String>(Arrays.asList("Hello", "Howdy", "Hey", "Sup"," Sup"));
     System.out.println(ex.findMe(testStrings, "Sup"));
+
+
   }
 }

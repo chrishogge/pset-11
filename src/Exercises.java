@@ -5,6 +5,10 @@ public class Exercises {
 
   public int findMe(int[] list, int target) {
 
+    if (Arrays.asList(list).contains(null) || Arrays.asList(list) == null) {
+      return -1;
+    }
+
     int i = 0;
 
     for(int x: list){

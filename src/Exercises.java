@@ -20,14 +20,14 @@ public class Exercises {
 
   public int findMe(ArrayList<String> list, String target) {
 
-    int i = 0;
+    if (list == null || list.size() == 0 || target == null) {
+      return -1;
+    }
 
-    for(String tempStr: list){
-      if(tempStr.equals(target)){
+    for(int i = 0; i < list.size(); i++){
+      if(list.get(i).equals(target)){
         return i;
       }
-
-      i++;
     }
 
     return -1;

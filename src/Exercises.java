@@ -43,14 +43,19 @@ public class Exercises {
 
   public int findMeFaster(ArrayList<Integer> list, int target) {
 
-    int index = list.indexOf(target);
+    int low = 0;
+    int mid = list.size()/2;
+    int high = list.size();
 
-    if(index > -1){
-      return index;
-    }else {
+    if(target == list.get(mid)){
+      return mid;
+    }else if(target > list.get(mid)){
+      return findMeFaster(new ArrayList<Integer>(list.subList(mid+1,high)), target);
+    }else if(target < list.get(mid)) {
+      return findMeFaster(new ArrayList<Integer>(list.subList(low, mid-1)), target);
+    }else{
       return -1;
     }
-
   }
 
   public int findMeFaster(String[] list, String target) {

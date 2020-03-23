@@ -71,6 +71,10 @@ public class Exercises {
   }
 
   public int findMeFaster(String[] list, String target) {
+    if (Arrays.asList(list).contains(null) || Arrays.asList(list) == null) {
+      return -1;
+    }
+
     return -1;
   }
 

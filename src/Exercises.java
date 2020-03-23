@@ -197,7 +197,33 @@ public class Exercises {
   }
 
   public int[] selection(int[] list, boolean ascending) {
+    if (Arrays.asList(list).contains(null) || Arrays.asList(list) == null) {
+      return null;
+    }
 
+    int n = list.length;
+    for (int i = 0; i < n - 1; i++) {
+      int min_idx = i;
+      for (int j = i + 1; j < n; j++)
+        if (list[j] < list[min_idx])
+          min_idx = j;
+
+      int temp = list[min_idx];
+      list[min_idx] = list[i];
+      list[i] = temp;
+    }
+
+    if (!ascending) {
+      int i, t;
+      int x = list.length;
+      for (i = 0; i < x / 2; i++) {
+        t = list[i];
+        list[i] = list[x - i - 1];
+        list[x - i - 1] = t;
+      }
+    }
+
+    return list;
   }
 
   public ArrayList<String> selection(ArrayList<String> list, boolean ascending) {

@@ -257,26 +257,73 @@ public class Exercises {
   }
 
   public ArrayList<Integer> merge(ArrayList<Integer> list, boolean ascending) {
-    return null;
+    if (list.contains(null) || list == null) {
+      return null;
+    }
+
+    ArrayList<Integer> left = new ArrayList<Integer>();
+    ArrayList<Integer> right = new ArrayList<Integer>();
+    int center;
+
+    if (list.size() == 1) {
+      return list;
+    } else {
+      center = list.size() / 2;
+      for (int i = 0; i < center; i++) {
+        left.add(list.get(i));
+      }
+
+      for (int i = center; i < list.size(); i++) {
+        right.add(list.get(i));
+      }
+
+      left = merge(left, true);
+      right = merge(right, true);
+      combineHalves(left, right, list);
+    }
+
+    if (!ascending) {
+      Collections.reverse(list);
+    }
+
+    return list;
   }
 
   public String[] merge(String[] list, boolean ascending) {
     return null;
   }
 
-  public static void main(String args[]){
+  public void combineHalves(ArrayList<Integer> left, ArrayList<Integer> right, ArrayList<Integer> complete){
 
-    Exercises ex = new Exercises();
+    int leftIndex = 0;
+    int rightIndex = 0;
+    int compArrayIndex = 0;
 
-    int[] test = {10, 5, 11, 3, 5, 6, 1, 3};
-    System.out.println(ex.findMe(test,9));
+    while(rightIndex < right.size() && leftIndex < left.size()){
+      if((left.get(leftIndex).compareTo(right.get(rightIndex))) < 0){
+        complete.set(compArrayIndex,left.get(leftIndex));
+        leftIndex++;
+      } else {
+        complete.set(compArrayIndex, right.get(rightIndex));
+        rightIndex++;
+      }
+      compArrayIndex++;
+    }
 
-    ArrayList<String> testStrings = new ArrayList<String>(Arrays.asList("Hello", "Howdy", "Hey", "Sup"," Sup"));
-    System.out.println(ex.findMe(testStrings, "Sup"));
+    ArrayList<Integer> temp;
+    int tempIndex;
+    if (leftIndex >= left.size()) {
+      temp = right;
+      tempIndex = rightIndex;
+    } else {
+      temp = left;
+      tempIndex = leftIndex;
+    }
 
-    ArrayList<Integer> test2 = new ArrayList(Arrays.asList(1, 2, 3, 5, 7, 8, 9, 9, 10));
-    System.out.println(ex.findMeFaster(test2, 10));
+    for (int i = tempIndex; i < temp.size(); i++) {
+      complete.set(compArrayIndex, temp.get(i));
+      compArrayIndex++;
+    }
 
-    System.out.println(Arrays.toString(ex.bubble(test, true)));
   }
 }

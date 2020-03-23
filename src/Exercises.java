@@ -98,38 +98,27 @@ public class Exercises {
       return null;
     }
 
-    ArrayList<Integer> tempArray = new ArrayList<Integer>();
-    for(int i: list){
-      tempArray.add(i);
-    }
-    int count = 0;
-
-    for(int i = 0; i < tempArray.size(); i++){
-      int temp = tempArray.get(i+1);
-      if(tempArray.get(i) > temp) {
-        tempArray.set(i + 1, tempArray.get(i));
-        tempArray.set(i, temp);
-        count++;
-      }
-      if(count > 0){
-        int[] tempInt = new int[tempArray.size()];
-        int z = 0;
-        for(int x: tempArray){
-          tempInt[z] = x;
+    for (int i = 0; i < list.length - 1; i++) {
+      for (int j = 0; j < list.length - i - 1; j++) {
+        if (list[j] > list[j + 1]) {
+          int temp = list[j];
+          list[j] = list[j + 1];
+          list[j + 1] = temp;
         }
-        bubble(tempInt, true);
-      }else if(count == 0){
-        int[] tempInt = new int[tempArray.size()];
-        int z = 0;
-        for(int x: tempArray){
-          tempInt[z] = x;
-        }
-
-        return tempInt;
       }
     }
 
-    return null;
+    if (!ascending) {
+      int i, t;
+      int n = list.length;
+      for (i = 0; i < n / 2; i++) {
+        t = list[i];
+        list[i] = list[n - i - 1];
+        list[n - i - 1] = t;
+      }
+    }
+
+    return list;
   }
 
   public ArrayList<String> bubble(ArrayList<String> list, boolean ascending) {

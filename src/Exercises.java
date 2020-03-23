@@ -94,6 +94,10 @@ public class Exercises {
 
   public int[] bubble(int[] list, boolean ascending) {
 
+    if (Arrays.asList(list).contains(null) || Arrays.asList(list) == null) {
+      return null;
+    }
+
     ArrayList<Integer> tempArray = new ArrayList<Integer>();
     for(int i: list){
       tempArray.add(i);

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Exercises {
 
@@ -137,7 +138,11 @@ public class Exercises {
       }
     }
 
-    return null;
+    if (!ascending) {
+      Collections.reverse(list);
+    }
+
+    return list;
   }
 
   public ArrayList<Integer> insertion(ArrayList<Integer> list, boolean ascending) {
